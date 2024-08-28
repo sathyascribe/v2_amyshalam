@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Amy Shalam{% endblock %}</title>
+    <link href="{% static 'css/output.css' %}" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    {% block content %}
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer class="w-full py-2 bg-gray-800 text-center text-white text-sm mt-8">
+        Copyright &copy; 2024 Amy Shalam. All rights reserved. Designed & Developed by Pixel Pursuit Studio
+    </footer>
+</body>
+</html>

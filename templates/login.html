@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="flex flex-col md:flex-row h-screen bg-gray-100">
+    <!-- Left Image Section -->
+    <div class="w-full md:w-1/2 h-1/2 md:h-full bg-cover bg-center" style="background-image: url('{% static 'images/left-image.jpg' %}');"></div>
+
+    <!-- Right Image Section -->
+    <div class="relative w-full md:w-1/2 h-1/2 md:h-full bg-cover bg-center" style="background-image: url('{% static 'images/right-image.jpg' %}');">
+        <!-- Overlay to darken the background image slightly for better contrast -->
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+
+        <!-- Logo and Login Form -->
+        <div class="absolute inset-0 flex flex-col justify-center items-center px-4 md:px-8">
+            <img src="{% static 'images/logo.jpg' %}" alt="Logo" class="max-w-[150px] h-auto mb-8 z-10">
+
+            <div class="flex flex-col justify-center items-center w-full max-w-md">
+                <form method="POST" class="bg-white p-6 md:p-8 rounded-lg shadow-lg w-full" action="{% url 'accounts:login' %}">
+                    {% csrf_token %}
+                    <!--Email Field-->
+                    <div class="mb-6">
+                        <label for="{{ form.username.id_for_label }}" class="block text-sm font-medium text-gray-700">Email Address</label>
+                        {{ form.username }}
+                        {% if form.username.errors %}
+                            <p class="text-red-500 text-sm">{{ form.username.errors }}</p>
+                        {% endif %}
+                    </div>
+                    <!--Password Field-->
+                    <div class="mb-6">
+                        <label for="{{ form.password.id_for_label }}" class="block text-sm font-medium text-gray-700">Password</label>
+                        {{ form.password }}
+                        {% if form.password.errors %}
+                            <p class="text-red-500 text-sm">{{ form.password.errors }}</p>
+                        {% endif %}
+                    </div>
+                    <!--Submit Button-->
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <button type="submit" class="bg-gray-700 text-white py-2 px-4 rounded-lg mb-2 md:mb-0">Login</button>
+                        <a href="#" class="text-gray-700 text-sm">Forgot Password?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
