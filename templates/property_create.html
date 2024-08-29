@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Create Property{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto my-10 p-6 bg-white rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Create New Property</h2>
+    <form action="{% url 'property:property_create' %}" method="POST" enctype="multipart/form-data" class="space-y-6">
+        {% csrf_token %}
+
+        <!-- Property Name -->
+        <div class="space-y-2">
+            <label for="title" class="text-gray-700 font-medium">Property Title</label>
+            <input type="text" id="title" name="title" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Enter property title">
+        </div>
+
+        <!-- Property Type -->
+        <div class="space-y-2">
+            <label for="property_type" class="text-gray-700 font-medium">Property Type</label>
+            <select id="property_type" name="property_type" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700">
+                <option value="" disabled selected>Select property type</option>
+                <option value="residential">Residential</option>
+                <option value="commercial">Commercial</option>
+            </select>
+        </div>
+
+        <!-- Subtype -->
+        <div class="space-y-2">
+            <label for="property_subtype" class="text-gray-700 font-medium">Property Subtype</label>
+            <input type="text" id="property_subtype" name="property_subtype" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Apartment, Villa, Office Space, etc.,">
+        </div>
+        {% comment %} <div class="space-y-2">
+            <label for="property_subtype" class="text-gray-700 font-medium">Property Subtype</label>
+            <select id="property_subtype" name="property_subtype" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700">
+                <option value="" disabled selected>Select subtype</option>
+                <option value="APARTMENT">Apartment</option>
+                <option value="INDEPENDENT_VILLA">Independent Villa</option>
+                <option value="STUDIO_APARTMENT">Studio Apartment</option>
+                <option value="OFFICE_SPACE">Office Space</option>
+                <option value="RETAIL_SPACE">Retail Space</option>
+                <option value="COMMERCIAL_SPACE">Commercial Space</option>
+            </select>
+        </div> {% endcomment %}
+
+        <!-- Address -->
+        <div class="space-y-2">
+            <label for="address_line_1" class="text-gray-700 font-medium">Address</label>
+            <input type="text" id="address_line_1" name="address_line_1" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Enter property address">
+        </div>
+
+        <!-- Address Line 2 -->
+        <div class="space-y-2">
+            <label for="address_line_2" class="text-gray-700 font-medium">Address Line 2</label>
+            <input type="text" id="address_line_2" name="address_line_2" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Enter address line 2">
+        </div>
+
+        <!-- City -->
+        <div class="space-y-2">
+            <label for="city" class="text-gray-700 font-medium">City</label>
+            <input type="text" id="city" name="city" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Enter city">
+        </div>
+
+        <!-- Province/State -->
+        <div class="space-y-2">
+            <label for="state" class="text-gray-700 font-medium">Province/State</label>
+            <input type="text" id="state" name="state" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Enter state">
+        </div>
+
+        <!-- Zip Code -->
+        <div class="space-y-2">
+            <label for="zip_code" class="text-gray-700 font-medium">Zip Code</label>
+            <input type="text" id="zip_code" name="zip_code" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Enter zip code">
+        </div>
+
+        <!-- Price -->
+        <div class="space-y-2">
+            <label for="price" class="text-gray-700 font-medium">Price ($)</label>
+            <input type="number" id="price" name="price" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Enter property price">
+        </div>
+
+        <!-- Bedrooms -->
+        <div class="space-y-2">
+            <label for="bedroom" class="text-gray-700 font-medium">Bedrooms</label>
+            <input type="number" id="bedroom" name="bedroom" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Enter number of bedrooms">
+        </div>
+
+        <!-- Bathrooms -->
+        <div class="space-y-2">
+            <label for="bathroom" class="text-gray-700 font-medium">Bathrooms</label>
+            <input type="number" id="bathroom" name="bathroom" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Enter number of bathrooms">
+        </div>
+
+        <!-- Living Room -->
+        <div class="space-y-2">
+            <label for="living_room" class="text-gray-700 font-medium">Living Room</label>
+            <input type="number" id="living_room" name="living_room" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Enter number of living rooms">
+        </div>
+
+        <!-- Parking -->
+        <div class="space-y-2">
+            <label for="parking" class="text-gray-700 font-medium">Parking</label>
+            <input type="number" id="parking" name="parking" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Enter number of parking spaces">
+        </div>
+
+        <!-- Square Feet -->
+        <div class="space-y-2">
+            <label for="square_feet" class="text-gray-700 font-medium">Square Feet</label>
+            <input type="number" id="square_feet" name="square_feet" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Enter square footage">
+        </div>
+
+        <!-- Year Built -->
+        <div class="space-y-2">
+            <label for="year_built" class="text-gray-700 font-medium">Year Built</label>
+            <input type="number" id="year_built" name="year_built" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Enter year built">
+        </div>
+
+        <!-- Latitude -->
+        <div class="space-y-2">
+            <label for="latitude" class="text-gray-700 font-medium">Latitude</label>
+            <input type="text" id="latitude" name="latitude" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Enter latitude">
+        </div>
+
+        <!-- Longitude -->
+        <div class="space-y-2">
+            <label for="longitude" class="text-gray-700 font-medium">Longitude</label>
+            <input type="text" id="longitude" name="longitude" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Enter longitude">
+        </div>
+        <!-- Description -->
+        <div class="space-y-2">
+            <label for="description" class="text-gray-700 font-medium">Description</label>
+            <textarea id="description" name="description" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Enter property description"></textarea>
+        </div>
+
+        <!-- Is Featured -->
+        <div class="space-y-2">
+            <label for="is_featured" class="text-gray-700 font-medium">Is Featured</label>
+            <input type="checkbox" id="is_featured" name="is_featured" class="w-6 h-6">
+        </div>
+
+        <!-- Property Availability -->
+        <div class="space-y-2">
+            <label for="availability" class="text-gray-700 font-medium">Availability</label>
+            <select id="availability" name="availability" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700">
+                <option value="" disabled selected>Select availability</option>
+                <option value="sale">For Sale</option>
+                <option value="rent">For Rent</option>
+            </select>
+        </div>
+
+        <!-- Property Status -->
+        <div class="space-y-2">
+            <label for="status" class="text-gray-700 font-medium">Status</label>
+            <select id="status" name="status" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700">
+                <option value="" disabled selected>Select status</option>
+                <option value="available">Available</option>
+                <option value="sold">Sold</option>
+                <option value="rented">Rented</option>
+            </select>
+        </div>
+
+        <!-- Images -->
+        <div class="space-y-2">
+            <label for="image" class="text-gray-700 font-medium">Property Images</label>
+            <input type="file" id="image" name="image" multiple class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700">
+        </div>
+
+        <div class="space-y-2">
+            <button type="submit" class="w-full px-6 py-2 text-white bg-gray-700 rounded-lg hover:bg-gray-600">Create Property</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
